@@ -13,14 +13,23 @@
 #include "pipex.h"
 
 
-void	parent_process(av, envp, fd)
+void	parent_process(char **av,char **envp,int *fd)
 {
 
 }
 
-void	child_process(av, envp, fd)
+void	child_process(char **av,char **envp,int *fd)
 {
+	int	file_in;
 
+	file_in = open(av[1], O_RDONLY, 0777);
+	if (file_in == -1)
+		error();
+	close(fd[0]);
+	dup2(file_in, STDIN_FILENO);
+	close(file_in);
+	dup2(fd[1], STDOUT_FILENO);
+	close(fd[1]);
 }
 
 int main(int ac, char **av, char **envp)
