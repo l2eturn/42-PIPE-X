@@ -1,0 +1,8 @@
+# test_infile.txt
+error: file not found
+info: process started
+error: disk full
+warning: low memory
+info: user logged in
+debug: cache cleared
+

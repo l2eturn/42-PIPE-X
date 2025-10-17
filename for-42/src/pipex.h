@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdio.h>
-//# include <sys/wait.h>
+# include <sys/wait.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
 
@@ -27,6 +27,6 @@ void				parent_process(char **av,char **envp,int *fd);
 void				error(void);
 void				xcq(char *av, char **envp);
 char				*env_path(char *cmd,char **envp);
-void				xcq(char *av, char **envp);
+void				xcq(char *command_line, char **envp);
 
 #endif

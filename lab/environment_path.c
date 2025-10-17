@@ -94,12 +94,12 @@ char	**ft_split(char const *s, char c)
 	return (res);
 }
 
-//int main(int argc, char **argv, char **envp)
-//{
-//    for (int i = 0; envp[i] != NULL; i++)
-//        printf("%s\n", envp[i]);
-//    return 0;
-//}
+int main(int argc, char **argv, char **envp)
+{
+    for (int i = 0; envp[i] != NULL; i++)
+        printf("%s\n", envp[i]);
+    return 0;
+}
 
 //int main(void)
 //{
@@ -121,7 +121,3 @@ char	**ft_split(char const *s, char c)
 //    return (0);
 //}
 
-int main(void)
-{
-
-}
