@@ -15,7 +15,14 @@
 
 void	parent_process(char **av,char **envp,int *fd)
 {
+	int	out_file;
 
+	out_file = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+	close(fd[0]);
+	dup2(out_file, STDOUT_FILENO);
+	close(out_file);
 }
 
 void	child_process(char **av,char **envp,int *fd)
