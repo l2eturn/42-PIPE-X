@@ -12,3 +12,14 @@
 
 #include "pipex.h"
 
+//void	xcq(char *av, char **envp)
+//{
+
+
+//}
+
+void	error(void)
+{
+	perror("Error");
+	exit(EXIT_FAILURE);
+}

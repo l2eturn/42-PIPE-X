@@ -16,12 +16,14 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
+# include <stdio.h>
+# include <sys/wait.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-
-
-
-
-
+void				child_process(char **av,char **envp,int *fd);
+void				parent_process(char **av,char **envp,int *fd);
+void				error(void);
+void				xcq(char *av, char **envp);
 #endif
