@@ -12,21 +12,21 @@
 
 #include "pipex.h"
 
-char	*env_path(char *cmd,char **envp)
+char	*env_path(char *cmd, char **envp)
 {
 	int		i;
-	char	**PATH_in_envp;
-	char 	*add_slash;
+	char	**path_in_envp;
+	char	*add_slash;
 	char	*abs_path;
 
 	i = 0;
 	while (ft_strnstr(envp[i], "PATH", 4) == 0)
 		i ++;
-	PATH_in_envp = ft_split(envp[i] + 5, ':');
+	path_in_envp = ft_split(envp[i] + 5, ':');
 	i = 0;
-	while (PATH_in_envp[i])
+	while (path_in_envp[i])
 	{
-		add_slash = ft_strjoin(PATH_in_envp[i], "/");
+		add_slash = ft_strjoin(path_in_envp[i], "/");
 		abs_path = ft_strjoin(add_slash, cmd);
 		free(add_slash);
 		if (access(abs_path, F_OK) == 0)
@@ -35,12 +35,12 @@ char	*env_path(char *cmd,char **envp)
 		i ++;
 	}
 	i = -1;
-	while (PATH_in_envp[++i])
-		free(PATH_in_envp[i]);
-	free(PATH_in_envp);
+	while (path_in_envp[++i])
+		free(path_in_envp[i]);
+	free(path_in_envp);
 	return (0);
 }
-//"ls -l"
+
 void	xcq(char *command_line, char **envp)
 {
 	char	**cmd;
@@ -57,7 +57,7 @@ void	xcq(char *command_line, char **envp)
 		free(cmd);
 		error();
 	}
-	if (execve(abs_path, cmd, NULL) == -1)
+	if (execve(abs_path, cmd, envp) == -1)
 		error();
 }
 

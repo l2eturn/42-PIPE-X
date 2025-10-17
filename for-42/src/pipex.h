@@ -22,11 +22,11 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-void				child_process(char **av,char **envp,int *fd);
-void				parent_process(char **av,char **envp,int *fd);
+void				child_process(char **av, char **envp, int *fd);
+void				parent_process(char **av, char **envp, int *fd);
 void				error(void);
 void				xcq(char *av, char **envp);
-char				*env_path(char *cmd,char **envp);
+char				*env_path(char *cmd, char **envp);
 void				xcq(char *command_line, char **envp);
 
 #endif
