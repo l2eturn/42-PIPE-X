@@ -12,11 +12,16 @@
 
 #include "pipex.h"
 
-//void	xcq(char *av, char **envp)
-//{
+char	*env_path(char *cmd,char **envp)
+{
+
+}
+
+void	xcq(char *av, char **envp)
+{
 
 
-//}
+}
 
 void	error(void)
 {

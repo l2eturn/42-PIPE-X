@@ -14,8 +14,7 @@ NAME = pipex
 
 CC = cc
 
-CFLAGS = -g3
-# -Werror -Wextra -Wall -fsanitize=address
+CFLAGS = -g3 -fsanitize=address -Werror -Wextra -Wall
 
 RM = rm -rf
 
@@ -46,6 +45,4 @@ clean :
 	make clean -C libft
 
 re : fclean all
-
-#$(CFLAGS)
 

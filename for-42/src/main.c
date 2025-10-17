@@ -23,6 +23,7 @@ void	parent_process(char **av,char **envp,int *fd)
 	close(fd[0]);
 	dup2(out_file, STDOUT_FILENO);
 	close(out_file);
+	xcq(av[2], envp);
 }
 
 void	child_process(char **av,char **envp,int *fd)
@@ -37,6 +38,7 @@ void	child_process(char **av,char **envp,int *fd)
 	close(file_in);
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[1]);
+	xcq(av[3], envp);
 }
 
 int main(int ac, char **av, char **envp)
