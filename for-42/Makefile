@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME = pipex
+NAME_B = pipex_bonus
 
 CC = cc
 
@@ -21,12 +22,20 @@ RM = rm -rf
 SRCS =	src/main.c\
 		src/utils.c
 
+SRCS_B =	src_bonus/main_bonus.c\
+			src_bonus/utils_bonus.c\
+
 OBJS = $(SRCS:.c=.o)
+
+OBJS_B = $(SRCS_B:.c=.o)
 
 LIBFT = libft/libft.a
 
 $(NAME) : $(OBJS) $(LIBFT)
 	cc $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+
+$(NAME_B) : $(OBJS_B) $(LIBFT)
+	cc $(CFLAGS) $(OBJS_B) $(LIBFT) -o $(NAME_B)
 
 $(LIBFT) :
 	make bonus -C libft
@@ -36,12 +45,14 @@ $(LIBFT) :
 
 all : $(LIBFT) $(NAME)
 
+bonus : $(LIBFT) $(NAME_B)
+
 fclean : clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_B)
 	make fclean -C libft
 
 clean :
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_B)
 	make clean -C libft
 
 re : fclean all
