@@ -91,32 +91,32 @@ char	**ft_split(char const *s, char c)
 	res[i] = NULL;
 	return (res);
 }
-//int main(void)
-//{
-//	int	fd[2];
-//	char str[6];
-//	pid_t pid;
-
-//	pipe(fd);
-//	pid = fork();
-//	if (pid == 0) //child
-//	{
-//		close(fd[0]);
-//		write(fd[1],"Hello\n",6);
-//		close(fd[1]);
-//	}
-//	else if (pid > 0) //parents
-//	{
-//		close(fd[1]);
-//		read(fd[0],str,6);
-//		close(fd[0]);
-//		printf("%s",str);
-//	}
-//}
-
-int main(int ac, char **av, char **evp)
+int main(void)
 {
-	int fd[2];
-	char **args = ft_split(av[1],' ');
-//ต้องเก็บ
+	int	fd[2];
+	char str[6];
+	pid_t pid;
+
+	pipe(fd);
+	pid = fork();
+	if (pid == 0) //child
+	{
+		close(fd[0]);
+		write(fd[1],"Hello\n",6);
+		close(fd[1]);
+	}
+	else if (pid > 0) //parents
+	{
+		close(fd[1]);
+		read(fd[0],str,6);
+		close(fd[0]);
+		printf("%s",str);
+	}
 }
+
+//int main(int ac, char **av, char **evp)
+//{
+//	int fd[2];
+//	char **args = ft_split(av[1],' ');
+////ต้องเก็บ
+//}

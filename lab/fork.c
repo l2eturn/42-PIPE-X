@@ -15,19 +15,13 @@
 
 int main()
 {
-    pid_t pid;
-
-    pid = fork();
-    if (pid == -1)
-    {
-        perror("fork");
-        exit(EXIT_FAILURE);
+    pid_t pid = fork();
+    if (pid > 0) {
+        // parent process
+        printf("Parent PID: %d, Child PID: %d\n", getpid(), pid);
+    } else if (pid == 0) {
+        // child process
+        printf("Child PID: %d, Parent PID: %d\n", getpid(), getppid());
     }
 
-    if (pid == 0)
-        printf("This is the child process. (pid: %d)\n", getpid());
-    else
-        printf("This is the parent process. (pid: %d)\n", getpid());
-
-    return (0);
 }

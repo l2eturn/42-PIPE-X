@@ -18,9 +18,9 @@ CFLAGS = -g3 -Werror -Wextra -Wall -fsanitize=address
 
 RM = rm - rf
 
-SRCS =	src/pipex.c\
-
-
+SRCS =	src/main.c\
+		src/utils.c\
+		libft/libft.a\
 
 $(NAME) :
 	make bonus -C libft
