@@ -20,7 +20,7 @@ void	arg_err(void)
 	exit(EXIT_SUCCESS);
 }
 
-int	open_file(char *av, int i)
+int	fd_for_file(char *av, int i)
 {
 	int	file;
 
@@ -34,4 +34,32 @@ int	open_file(char *av, int i)
 	if (file == -1)
 		error();
 	return (file);
+}
+
+char	*stdin_line(char **line)
+{
+	char	*buffer;
+	int		i;
+	int		r;
+	char	ch;
+
+	i = 0;
+	r = 0;
+	buffer = (char *)malloc(BUFFER);
+	if (!buffer)
+		return (-1);
+	r = read(0, &c, 1);
+	while (r && c != '\0' && c != '\n')
+	{
+		if (c != '\n' && c != '\0')
+			buffer[i] = c;
+		i ++;
+		r = read(0, &c, 1);
+	}
+	buffer[i] = '\n';
+	i++;
+	buffer[i] = '\0';
+	*line = buffer;
+	free(buffer);
+	return (r);
 }

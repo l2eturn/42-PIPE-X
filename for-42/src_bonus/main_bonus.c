@@ -36,49 +36,32 @@ void	child_process_bonus(char *av, char **envp)
 	}
 }
 
-static void	write_heredoc_input(char *limiter, int write_fd)
+void	here_doc(char *limiter, int ac)
 {
+	pid_t	pid;
+	int		fd[2];
 	char	*line;
 
-	line = get_next_line(STDIN_FILENO);
-	while (line)
-	{
-		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0
-			&& (line[ft_strlen(limiter)] == '\n'
-				|| line[ft_strlen(limiter)] == '\0'))
-		{
-			free(line);
-			break ;
-		}
-		write(write_fd, line, ft_strlen(line));
-		free(line);
-		line = get_next_line(STDIN_FILENO);
-	}
-}
-
-void	here_doc(char *limiter)
-{
-	pid_t	reader;
-	int		fd[2];
-
+	if (ac < 6)
+		arg_err();
 	if (pipe(fd) == -1)
 		error();
-	reader = fork();
-	if (reader == -1)
-		error();
-	if (reader == 0)
+	pid = fork();
+	if (pid == 0)
 	{
 		close(fd[0]);
-		write_heredoc_input(limiter, fd[1]);
-		close(fd[1]);
-		exit(EXIT_SUCCESS);
+		while (stdin_line(&line))
+		{
+			if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+				exit(EXIT_SUCCESS);
+			write(fd[1], line, ft_strlen(line));
+		}
 	}
 	else
 	{
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
-		waitpid(reader, NULL, 0);
+		wait(NULL);
 	}
 }
 
@@ -93,14 +76,13 @@ int	main(int ac, char **av, char **envp)
 		if (ft_strncmp(av[1], "here_doc", 8) == 0)
 		{
 			i = 3;
-			fileout = open_file(av[ac - 1], 0);
-			here_doc(av[2]);
+			fileout = fd_for_file(av[ac - 1], 0);
 		}
 		else
 		{
 			i = 2;
-			fileout = open_file(av[ac - 1], 1);
-			filein = open_file(av[1], 2);
+			fileout = fd_for_file(av[ac - 1], 1);
+			filein = fd_for_file(ac[1], 2);
 			dup2(filein, STDIN_FILENO);
 		}
 		while (i < ac - 2)

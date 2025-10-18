@@ -58,7 +58,10 @@ void	xcq(char *command_line, char **envp)
 		error();
 	}
 	if (execve(abs_path, cmd, envp) == -1)
+	{
+		free(abs_path);
 		error();
+	}
 }
 
 void	error(void)

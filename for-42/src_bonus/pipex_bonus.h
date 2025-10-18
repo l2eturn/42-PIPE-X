@@ -13,17 +13,15 @@
 #ifndef PIPEX_BONUS_H
 # define PIPEX_BONUS_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdio.h>
-# include <sys/wait.h>
-# include <fcntl.h>
+# define BUFFER 4242
+
 # include "../libft/libft.h"
 # include "../src/pipex.h"
 # include "../libft/get_next_line.h"
 
 void				arg_err(void);
-int					open_file(char *av, int i);
+int					fd_for_file(char *av, int i);
+void				child_process_bonus(char *av, char **envp);
+char				*stdin_line(char **line);
 
 #endif

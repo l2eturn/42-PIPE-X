@@ -2,6 +2,8 @@
 	"files.associations": {
 		"fcntl.h": "c",
 		"libft.h": "c",
-		"string.h": "c"
+		"string.h": "c",
+		"get_next_line.h": "c",
+		"pipex.h": "c"
 	}
 }
