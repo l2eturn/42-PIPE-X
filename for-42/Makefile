@@ -23,6 +23,7 @@ SRCS =	src/main.c\
 		src/utils.c
 
 SRCS_B =	src_bonus/main_bonus.c\
+			src/utils.c\
 			src_bonus/utils_bonus.c\
 
 OBJS = $(SRCS:.c=.o)

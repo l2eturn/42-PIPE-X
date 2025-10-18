@@ -21,7 +21,9 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../src/pipex.h"
+# include "../libft/get_next_line.h"
 
 void				arg_err(void);
+int					open_file(char *av, int i);
 
 #endif

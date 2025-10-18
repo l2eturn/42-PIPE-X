@@ -106,7 +106,7 @@ int	main(int ac, char **av, char **envp)
 		while (i < ac - 2)
 			child_process_bonus(av[i++], envp);
 		dup2(fileout, STDOUT_FILENO);
-		execute(av[ac - 2], envp);
+		xcq(av[ac - 2], envp);
 	}
 	arg_err();
 }
