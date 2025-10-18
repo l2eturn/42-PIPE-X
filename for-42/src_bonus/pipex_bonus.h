@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H_BONUS
-# define PIPEX_H_BONUS
-# define BUFFER_P 500
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,10 +20,8 @@
 //# include <sys/wait.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
+# include "../src/pipex.h"
 
-
-
-
-
+void				arg_err(void);
 
 #endif
