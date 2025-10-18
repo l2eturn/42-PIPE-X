@@ -27,5 +27,6 @@ void				error(void);
 void				xcq(char *av, char **envp);
 char				*env_path(char *cmd, char **envp);
 void				xcq(char *command_line, char **envp);
+void				free_path(char **path_in_envi);
 
 #endif

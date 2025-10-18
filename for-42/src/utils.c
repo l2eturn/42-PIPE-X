@@ -12,6 +12,16 @@
 
 #include "pipex.h"
 
+void	free_path(char **path_in_envi)
+{
+	int	j;
+
+	j = 0;
+	while (path_in_envi[j])
+		free(path_in_envi[j++]);
+	free(path_in_envi);
+}
+
 char	*env_path(char *cmd, char **envp)
 {
 	int		i;
@@ -30,14 +40,14 @@ char	*env_path(char *cmd, char **envp)
 		abs_path = ft_strjoin(add_slash, cmd);
 		free(add_slash);
 		if (access(abs_path, F_OK) == 0)
+		{
+			free_path(path_in_envp);
 			return (abs_path);
+		}
 		free(abs_path);
 		i ++;
 	}
-	i = -1;
-	while (path_in_envp[++i])
-		free(path_in_envp[i]);
-	free(path_in_envp);
+	free_path(path_in_envp);
 	return (0);
 }
 
@@ -48,7 +58,10 @@ void	xcq(char *command_line, char **envp)
 	int		i;
 
 	cmd = ft_split(command_line, ' ');
-	abs_path = env_path(cmd[0], envp);
+	if (access(cmd[0], F_OK) == 0)
+		abs_path = cmd[0];
+	else
+		abs_path = env_path(cmd[0], envp);
 	if (!abs_path)
 	{
 		i = 0;
