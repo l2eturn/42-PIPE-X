@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: slimvutt <slimvut@fpgij;dgj;ds.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/18 01:26:10 by slimvutt          #+#    #+#             */
-/*   Updated: 2025/10/18 01:26:10 by slimvutt         ###   ########.fr       */
+/*   Created: 2025/10/18 16:13:32 by slimvutt          #+#    #+#             */
+/*   Updated: 2025/10/18 16:13:32 by slimvutt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	fd_for_file(char *av, int i)
 	return (file);
 }
 
-char	*stdin_line(char **line)
+int	stdin_line(char **line)
 {
 	char	*buffer;
 	int		i;
@@ -48,13 +48,13 @@ char	*stdin_line(char **line)
 	buffer = (char *)malloc(BUFFER);
 	if (!buffer)
 		return (-1);
-	r = read(0, &c, 1);
-	while (r && c != '\0' && c != '\n')
+	r = read(0, &ch, 1);
+	while (r && ch != '\0' && ch != '\n')
 	{
-		if (c != '\n' && c != '\0')
-			buffer[i] = c;
+		if (ch != '\n' && ch != '\0')
+			buffer[i] = ch;
 		i ++;
-		r = read(0, &c, 1);
+		r = read(0, &ch, 1);
 	}
 	buffer[i] = '\n';
 	i++;

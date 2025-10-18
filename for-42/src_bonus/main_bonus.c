@@ -82,7 +82,7 @@ int	main(int ac, char **av, char **envp)
 		{
 			i = 2;
 			fileout = fd_for_file(av[ac - 1], 1);
-			filein = fd_for_file(ac[1], 2);
+			filein = fd_for_file(av[1], 2);
 			dup2(filein, STDIN_FILENO);
 		}
 		while (i < ac - 2)

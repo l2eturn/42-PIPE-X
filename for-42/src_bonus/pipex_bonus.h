@@ -22,6 +22,6 @@
 void				arg_err(void);
 int					fd_for_file(char *av, int i);
 void				child_process_bonus(char *av, char **envp);
-char				*stdin_line(char **line);
+int					stdin_line(char **line);
 
 #endif
